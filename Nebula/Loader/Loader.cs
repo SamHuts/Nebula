@@ -1,6 +1,7 @@
 ﻿using Microsoft.SqlServer.Server;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using Selenium.WebDriver.UndetectedChromeDriver;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+
+
 
 namespace Nebula
 {
@@ -81,9 +85,14 @@ namespace Nebula
 
         private void button2_Click(object sender, EventArgs e)
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://growdice.is");
+            using (var driver = UndetectedChromeDriver.Instance("profile_name"))
+            {
+                driver.Navigate().GoToUrl("https://growdice.is/games/towers");
+            }
 
         }
     }
 }
+
+
+    
